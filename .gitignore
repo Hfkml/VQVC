@@ -1,5 +1,4 @@
-audio
-dataset/
+
 data
 ./data/*
 ./data/*/*
@@ -43,4 +42,5 @@ finetune/*/*/*
 ./obj_plotter.ipynb
 ./obj_plotter.py
 ./similarity.py
-./test_audio
+test_audio
+libri_train

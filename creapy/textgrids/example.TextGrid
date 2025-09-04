@@ -1,0 +1,70 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 2.443926799952237 
+tiers? <exists> 
+size = 3 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "speaker" 
+        xmin = 0 
+        xmax = 2.443926799952237 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 2.443926799952237 
+            text = "auf der letzten Tagung auf der ich war war es mir ziemlich fad <noise>" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "speaker-creak" 
+        xmin = 0 
+        xmax = 2.443926799952237 
+        intervals: size = 5 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.5523149246481012 
+            text = "" 
+        intervals [2]:
+            xmin = 0.5523149246481012 
+            xmax = 0.6711930484846533 
+            text = "c" 
+        intervals [3]:
+            xmin = 0.6711930484846533 
+            xmax = 1.888278602049425 
+            text = "" 
+        intervals [4]:
+            xmin = 1.888278602049425 
+            xmax = 2.018478451965663 
+            text = "c" 
+        intervals [5]:
+            xmin = 2.018478451965663 
+            xmax = 2.443926799952237 
+            text = "" 
+    item [3]:
+        class = "IntervalTier" 
+        name = "myCreakTier" 
+        xmin = 0 
+        xmax = 2.443926799952237 
+        intervals: size = 5 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.54 
+            text = "" 
+        intervals [2]:
+            xmin = 0.54 
+            xmax = 0.68 
+            text = "c" 
+        intervals [3]:
+            xmin = 0.68 
+            xmax = 1.9000000000000001 
+            text = "" 
+        intervals [4]:
+            xmin = 1.9000000000000001 
+            xmax = 2.02 
+            text = "c" 
+        intervals [5]:
+            xmin = 2.02 
+            xmax = 2.443926799952237 
+            text = "" 

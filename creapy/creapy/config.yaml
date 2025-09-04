@@ -1,0 +1,110 @@
+# USER:
+#   audio_directory: null
+#   textgrid_directory: null
+#   csv_directory: null
+#   audio_start: 0
+#   audio_end: -1
+#   audio_suffix: .wav
+#   textgrid_suffix: .TextGrid
+#   gender_model: all
+#   tier_name: creapy
+#   block_size: 0.040 # seconds
+#   hop_size: 0.010 # in seconds
+#   creak_threshold: 0.75
+#   zcr_threshold: 0.08
+#   ste_threshold: 0.00001
+
+DEFAULT: 
+  sample_dir: audio/samples
+  audio_suffix: .wav # file name extension of audio file(s)
+  audio_re: (?P<speakers>[a-zA-Z\d]+)_(?P<single_speaker>\d{3}[a-zA-Z])_.+\.wav # [optional] define regex to match your files
+  re_speaker_group: single_speaker # ??
+
+FEATURE_EXTRACTION: # choose which features should be extracted
+  cpp: false
+  hnr: true
+  jitter: true
+  h1h2: true
+  shimmer: true
+  f0mean: true
+  zcr: true
+  ste: true
+  VALUES: # set parameters/thresholds for the features
+    HNR: 1
+    JITTER: 1
+    H1H2: 1
+    SHIMMER: 1
+    F0MEAN: # fundamental frequency
+      fmin: 60 # pitch range
+      fmax: 500 # pitch range
+    ZCR: 
+      window: hamming
+    STE:
+      window: hamming
+
+CLASSIFICATION: # set parameters for the (random forest) classification
+  impute_strategy: median # mean, most_frequent, null
+  random_state: 42 # int, null
+  test_size: 0.33 # float
+
+MODEL:
+  PREPROCESSING:
+    impute_strategy: median # mean, most_frequent, null
+    impute_at_fit: true
+    test_size: 0.33 # int, Pfloat
+    block_size: 0.040 # in seconds
+    hop_size: 0.010 # in seconds
+    random_state: 42
+    UNVOICED_EXCLUSION:
+      zcr: true
+      ste: true
+      VALUES:
+        ZCR:
+          threshold: 0.10
+          replace_value: 0.0
+          operator: ">="
+          normalize: true
+        STE:
+          threshold: 0.00001
+          replace_value: 0.0
+          operator: "<="
+          normalize: false
+
+  POSTPROCESSING:
+    MAVG:
+      mavg: false
+      VALUES:
+        length: 3
+        mode: same
+    INTERVALS:
+      creak_threshold: 0.75
+      min_creak_length: 0.03
+      max_gap: 0.015
+
+  CLASSIFIER:
+    clf: rfc # rfc, mlp
+    VALUES:
+      RFC:
+        kwargs: 
+          n_estimators: 99
+          random_state: 42 # int, null
+      MLP:
+        kwargs:
+          solver: lbfgs
+          hidden_layer_sizes: [5, 5, 5, 2]
+          random_state: 42
+          max_iter: 500
+    predict_proba: true # true, false
+    target_name: "c"
+  FEATURES:
+    for_classification: ['hnr', 'jitter', 'h1h2', 'shimmer', 'f0mean']
+  model_location: model/training_models/model
+  save_pickle: false
+  target_label: class
+
+
+PRAAT:
+  creak_tier_name: creapy
+  interval_text: c
+  creak_re: (?P<speaker>[a-zA-Z\d]+)-creak
+  creak_fstr: '{}-creak'

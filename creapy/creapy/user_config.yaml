@@ -1,0 +1,16 @@
+audio_directory: null
+textgrid_directory: null
+csv_directory: null
+audio_start: 0
+audio_end: -1
+audio_suffix: .wav
+filename_extension: 
+textgrid_suffix: .TextGrid
+gender_model: all
+tier_name: creapy
+verbose: true
+block_size: 0.040 # seconds
+hop_size: 0.010 # in seconds
+creak_threshold: 0.75
+zcr_threshold: 0.10
+ste_threshold: 0.00001

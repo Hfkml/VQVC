@@ -1,0 +1,8 @@
+*.wav
+.ipynb_checkpoints
+__pycache__
+creapy.egg-info
+!audio/example.wav
+.vscode
+.python-version
+.DS_Store
